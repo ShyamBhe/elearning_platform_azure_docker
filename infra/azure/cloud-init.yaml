@@ -1,0 +1,8 @@
+#cloud-config
+# Installs Docker and git on first boot of the VM.
+package_update: true
+packages: [ca-certificates, curl, git]
+runcmd:
+  - curl -fsSL https://get.docker.com | sh
+  - usermod -aG docker azureuser
+  - systemctl enable --now docker
